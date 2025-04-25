@@ -1,0 +1,5 @@
+Appium-Python-Client==5.0.0
+allure-behave==2.14.0
+behave==1.2.6
+parse==1.20.2
+parse_type==0.6.4

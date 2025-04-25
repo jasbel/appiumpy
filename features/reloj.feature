@@ -1,3 +1,4 @@
+# @slow
 Feature: Configuración de una alarma en la app de Reloj
 
   Scenario: Crear una alarma para las 10:20

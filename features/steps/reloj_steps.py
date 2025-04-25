@@ -11,27 +11,22 @@ def step_impl(context):
 
 @when("navego a la pestaña de alarmas")
 def step_impl(context):
-    sleep(2)
     context.reloj.abrir_alarma()
 
 @when("presiono el botón para agregar una nueva alarma")
 def step_impl(context):
-    sleep(2)
     context.reloj.agregar_alarma()
 
 @when('selecciono la hora "{hora}"')
 def step_impl(context, hora):
-    sleep(2)
     context.reloj.seleccionar_hora(hora)
 
 @when('selecciono los minutos "{minutos}"')
 def step_impl(context, minutos):
-    sleep(2)
     context.reloj.seleccionar_minuto(minutos)
 
 @then('confirmo la alarma de la "{hora}" horas con "{minuto}" minutos')
 def step_impl(context, hora, minuto):
-    sleep(2)
     context.reloj.confirmar_alarma()
 
     sleep(2)
