@@ -5,12 +5,72 @@
   "version": "0.2.0",
   "configurations": [
     {
+      "name": "Python: Behave runner script",
+      "type": "python",
+      "request": "launch",
+      "program": "${workspaceFolder}/run_behave.py",
+      "console": "integratedTerminal",
+      "args": [
+        "${input:featurePath}",
+        "${input:appName}"
+      ]
+    },
+    {
       "name": "Python: Terminal (integrated)",
       "type": "python",
       "request": "launch",
       "program": "venv\\Lib\\site-packages\\behave\\__main__.py",
+      "console": "integratedTerminal"
+     },
+     {
+      "name": "Python: Behave - common Feature",
+      "type": "python",
+      "request": "launch",
+      "program": "venv/Lib/site-packages/behave/__main__.py",
       "console": "integratedTerminal",
-      "cwd":"${workspaceFolder}\\Drivers_Features"
-     }
+      "args": [
+          "features/common.feature", // Reemplaza con la ruta del feature que quieras depurar
+          "-D",
+          "app=barik"
+      ]
+    },
+    {
+      "name": "Python: Behave - home_screen Feature",
+      "type": "python",
+      "request": "launch",
+      "program": "venv/Lib/site-packages/behave/__main__.py",
+      "console": "integratedTerminal",
+      "args": [
+          "features/home_screen.feature",
+          "-D",
+          "app=barik"
+      ]
+    },
+    {
+      "name": "Python: Behave - options Feature",
+      "type": "python",
+      "request": "launch",
+      "program": "venv/Lib/site-packages/behave/__main__.py",
+      "console": "integratedTerminal",
+      "args": [
+          "features/options_screen.feature",
+          "-D",
+          "app=barik"
+      ]
+    },
+  ],
+  "inputs": [
+    {
+      "id": "featurePath",
+      "type": "promptString",
+      "description": "Ruta al archivo .feature [home|option|common]",
+      "default": "home"
+    },
+    {
+      "id": "appName",
+      "type": "promptString",
+      "description": "Nombre de la app",
+      "default": "barik"
+    }
   ]
 }

@@ -14,7 +14,7 @@ def before_all(context):
 
 
 def before_scenario(context, scenario):
-    context.driver = create_driver()
+    context.driver = create_driver(context)
     context.driver.implicitly_wait(5)
 
 def before_step(context, step):
@@ -24,5 +24,7 @@ def before_step(context, step):
     sleep(delay)
 
 def after_scenario(context, scenario):
+    sleep(1)
+
     if hasattr(context, "driver"):
         context.driver.quit()
