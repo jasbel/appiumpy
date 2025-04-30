@@ -42,7 +42,7 @@ Feature: Recarga de Saldo [Recharge]
     And el usuario tiene una tarjeta seleccionada
     When el usuario presiona el botón "Recargar"
     And el usuario selecciona un importe a recargar
-    And el usuario selecciona un método de pago
+    And el usuario selecciona un método de pago ? que metodo de pago, tendria que ser mas especifico
     And el usuario confirma la recarga
     Then el saldo de la tarjeta se actualiza correctamente
     And el usuario recibe una confirmación de la recarga
@@ -88,12 +88,12 @@ Feature: Movimientos y Transacciones [Movements]
     And el usuario selecciona un rango de fechas
     Then se muestran solo los movimientos dentro de ese rango de fechas
 
-    Scenario: Descargar justificantes
-      Given el usuario ha iniciado sesion
-      And el usuario se encuentra en la pantalla de movimientos
-      When el usuario selecciona un movimiento en especifico
-      And el usuario presiona el boton "descargar justificante"
-      Then se descarga un archivo pdf con el justificante del movimiento.
+  Scenario: Descargar justificantes
+    Given el usuario ha iniciado sesion
+    And el usuario se encuentra en la pantalla de movimientos
+    When el usuario selecciona un movimiento en especifico
+    And el usuario presiona el boton "descargar justificante"
+    Then se descarga un archivo pdf con el justificante del movimiento.
   
   Scenario: Ver informe de uso
     Given el usuario ha iniciado sesión
@@ -119,12 +119,14 @@ Feature: Compra de Títulos Temporales [Titles]
     Then el título se añade a la tarjeta del usuario
     And el usuario recibe una confirmación de la compra
     And el titulo se activa inmediatamente.
+
   Scenario: Renovar un titulo.
     Given el usuario ha iniciado sesion
     And el usuario se encuentra en la pantalla principal
     And el usuario tiene un titulo a punto de vencer
     When el usuario presiona el boton "renovar titulo"
     Then el usuario es redirigido a la compra de titulos.
+    
   Scenario: Alertas personalizadas.
     Given el usuario ha iniciado sesion
     And el usuario se encuentra en la pantalla principal
