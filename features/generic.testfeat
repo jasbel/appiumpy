@@ -1,0 +1,209 @@
+# 1. Feature: Gestión de Múltiples Tarjetas
+Feature: Gestión de Múltiples Tarjetas [MultiCard]
+  Como usuario
+  Quiero poder gestionar varias tarjetas de transporte
+  Para tener acceso a todas mis tarjetas desde la aplicación
+
+  Scenario: Añadir una nueva tarjeta
+    Given el usuario ha iniciado sesión
+    And el usuario está en la pantalla principal
+    When el usuario presiona el botón "Añadir Tarjeta"
+    And el usuario acerca una nueva tarjeta al dispositivo
+    Then la tarjeta se añade a la lista de tarjetas del usuario
+    And el usuario puede visualizar la tarjeta en la lista
+
+  Scenario: Eliminar una tarjeta existente
+    Given el usuario ha iniciado sesión
+    And el usuario está en la pantalla principal
+    And el usuario tiene varias tarjetas añadidas
+    When el usuario selecciona la opción "Eliminar" en una tarjeta específica
+    And el usuario confirma la eliminación
+    Then la tarjeta se elimina de la lista de tarjetas del usuario
+
+  Scenario: Asignar un nombre personalizado a una tarjeta
+    Given el usuario ha iniciado sesión
+    And el usuario está en la pantalla principal
+    And el usuario tiene una tarjeta añadida
+    When el usuario selecciona la opción "Editar nombre" en una tarjeta específica
+    And el usuario introduce un nuevo nombre para la tarjeta (ej: "Tarjeta Personal")
+    And el usuario guarda los cambios
+    Then el nombre de la tarjeta se actualiza en la lista de tarjetas
+
+# 2. Feature: Recarga de Saldo
+
+Feature: Recarga de Saldo [Recharge]
+  Como usuario
+  Quiero poder recargar el saldo de mi tarjeta
+  Para poder utilizarla en el transporte público
+
+  Scenario: Realizar una recarga manual
+    Given el usuario ha iniciado sesión
+    And el usuario está en la pantalla principal
+    And el usuario tiene una tarjeta seleccionada
+    When el usuario presiona el botón "Recargar"
+    And el usuario selecciona un importe a recargar
+    And el usuario selecciona un método de pago
+    And el usuario confirma la recarga
+    Then el saldo de la tarjeta se actualiza correctamente
+    And el usuario recibe una confirmación de la recarga
+
+  Scenario: Configurar una recarga automática
+    Given el usuario ha iniciado sesión
+    And el usuario está en la pantalla principal
+    And el usuario tiene una tarjeta seleccionada
+    When el usuario selecciona la opción "Recargas Automáticas"
+    And el usuario establece un saldo mínimo
+    And el usuario establece un importe a recargar
+    And el usuario guarda la configuración
+    Then las recargas automáticas quedan configuradas
+  
+  Scenario: Mostrar historial de recargas
+    Given el usuario ha iniciado sesión
+    And el usuario está en la pantalla principal
+    And el usuario tiene una tarjeta seleccionada
+    When el usuario selecciona la opción "Historial de recargas"
+    Then se muestra una lista de recargas con detalles como fecha, importe y método de pago
+
+
+# 3. Feature: Movimientos y Transacciones
+
+
+Feature: Movimientos y Transacciones [Movements]
+  Como usuario
+  Quiero poder ver los movimientos y transacciones de mi tarjeta
+  Para llevar un control de mi uso y gastos en el transporte
+
+  Scenario: Visualizar los movimientos de la tarjeta
+    Given el usuario ha iniciado sesión
+    And el usuario está en la pantalla principal
+    And el usuario tiene una tarjeta seleccionada
+    When el usuario presiona el botón "Movimientos"
+    Then se muestra una lista de movimientos con detalles como fecha, importe y tipo de transacción
+    And los movimientos están categorizados (viaje, recarga, etc.)
+
+  Scenario: Filtrar movimientos por fecha
+    Given el usuario ha iniciado sesión
+    And el usuario está en la pantalla de movimientos
+    When el usuario selecciona el filtro "Por fecha"
+    And el usuario selecciona un rango de fechas
+    Then se muestran solo los movimientos dentro de ese rango de fechas
+
+    Scenario: Descargar justificantes
+      Given el usuario ha iniciado sesion
+      And el usuario se encuentra en la pantalla de movimientos
+      When el usuario selecciona un movimiento en especifico
+      And el usuario presiona el boton "descargar justificante"
+      Then se descarga un archivo pdf con el justificante del movimiento.
+  
+  Scenario: Ver informe de uso
+    Given el usuario ha iniciado sesión
+    And el usuario está en la pantalla de movimientos
+    When el usuario selecciona la opcion "informe de uso"
+    Then se muestra el gasto por dia, el gasto por semana y el transporte mas utilizado
+
+
+# 4. Feature: Compra de Títulos Temporales
+
+Feature: Compra de Títulos Temporales [Titles]
+  Como usuario
+  Quiero poder comprar títulos temporales (bonos, abonos)
+  Para poder usar el transporte público sin recargar cada vez
+
+  Scenario: Comprar un bono de transporte
+    Given el usuario ha iniciado sesión
+    And el usuario está en la pantalla principal
+    And el usuario tiene una tarjeta seleccionada
+    When el usuario presiona el botón "Comprar Título"
+    And el usuario selecciona el tipo de título (ej: "Bono 10 viajes")
+    And el usuario confirma la compra
+    Then el título se añade a la tarjeta del usuario
+    And el usuario recibe una confirmación de la compra
+    And el titulo se activa inmediatamente.
+  Scenario: Renovar un titulo.
+    Given el usuario ha iniciado sesion
+    And el usuario se encuentra en la pantalla principal
+    And el usuario tiene un titulo a punto de vencer
+    When el usuario presiona el boton "renovar titulo"
+    Then el usuario es redirigido a la compra de titulos.
+  Scenario: Alertas personalizadas.
+    Given el usuario ha iniciado sesion
+    And el usuario se encuentra en la pantalla principal
+    When el usuario entra en la configuración de las alertas
+    And el usuario puede establecer alertas personalizadas para el vencimiento de titulos.
+    Then las alertas quedan configuradas.
+
+# 5. Feature: Detección Automática de Tarjeta NFC
+
+Feature: Detección Automática de Tarjeta NFC [NFC]
+  Como usuario
+  Quiero que la aplicación detecte automáticamente mi tarjeta
+  Para que sea más rápido y cómodo usarla
+
+  Scenario: Detección de tarjeta al acercarla al dispositivo
+    Given el usuario ha abierto la aplicación
+    When el usuario acerca una tarjeta NFC al dispositivo
+    Then la aplicación detecta la tarjeta automáticamente
+    And se muestra información de la tarjeta en la pantalla
+
+
+# 6. Feature: Recargas automaticas
+
+Feature: Recargas Automáticas [AutomaticRecharge]
+    Como usuario
+    Quiero poder configurar recargas automáticas
+    Para no tener que preocuparme de recargar manualmente mi tarjeta
+    Scenario: Configurar recarga automatica con saldo minimo
+    Given el usuario ha iniciado sesion
+    And el usuario se encuentra en la pantalla principal
+    And el usuario tiene una tarjeta seleccionada
+    When el usuario accede a la configuracion de recarga automatica
+    And el usuario configura la recarga automatica con saldo minimo de 5€
+    And el usuario configura una recarga de 10€
+    Then las recargas automáticas quedan configuradas
+    And cuando el saldo de la tarjeta llegue a 5€ se realizara una recarga automaticamente de 10€
+
+# 7. Feature: Ubicación de puntos de venta
+
+Feature: Ubicación de puntos de venta [SalePoints]
+    Como usuario
+    Quiero encontrar puntos de venta cercanos a mi ubicación
+    Para poder recargar mi tarjeta cuando no puedo hacerlo online
+    Scenario: Ver puntos de venta en el mapa
+        Given el usuario ha iniciado sesión
+        When el usuario presiona en el botón "puntos de venta"
+        Then se muestra un mapa con los puntos de venta cercanos
+        And se muestra la dirección del punto de venta
+
+# 8. Feature: Programa de fidelizacion
+
+Feature: Programa de Fidelización [FidelityProgram]
+    Como usuario
+    Quiero ganar puntos por el uso de la aplicación y la tarjeta
+    Para poder obtener beneficios y descuentos
+    Scenario: Ganar puntos por cada uso de la aplicacion
+        Given el usuario ha iniciado sesión
+        When el usuario utiliza la aplicación para recargar saldo o comprar títulos
+        Then el usuario gana puntos por cada transacción
+    Scenario: Canjear los puntos por descuentos
+        Given el usuario ha iniciado sesión
+        And el usuario tiene puntos acumulados
+        When el usuario ingresa a la seccion de "canjear puntos"
+        Then el usuario puede canjear los puntos por descuentos en títulos o recargas
+
+# 9. Feature: Soporte de tarjetas virtuales
+
+Feature: Tarjetas Virtuales [VirtualCards]
+    Como usuario
+    Quiero utilizar una tarjeta virtual en el movil
+    Para no tener que llevar conmigo la tarjeta fisica
+    Scenario: Generar una tarjeta virtual.
+        Given el usuario ha iniciado sesión
+        When el usuario accede a la opcion "tarjeta virtual"
+        And el usuario presiona el boton "generar tarjeta virtual"
+        Then se genera una nueva tarjeta virtual en el movil del usuario
+    Scenario: Migrar saldo
+        Given el usuario ha iniciado sesión
+        And el usuario tiene una tarjeta fisica y una virtual
+        When el usuario accede a la opcion "migrar saldo"
+        And el usuario configura el importe a migrar
+        Then el saldo se migra de la tarjeta fisica a la virtual

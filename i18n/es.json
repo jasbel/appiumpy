@@ -1,0 +1,12 @@
+{
+  "Back":  "Back",
+  "Options":  "Options",
+  "Barik NFC":  "Barik NFC",
+  "Transactions":  "Transactions",
+  "head": {
+    "title": {
+      "options": "Options"
+    }
+  },
+  "greeting": "Hola"
+}

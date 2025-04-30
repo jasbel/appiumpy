@@ -24,16 +24,16 @@ def step_navega_tabs(context):
     top = TabTopComponent(context.driver)
 
     bottom.go_to_options()
-    assert top.get_title_text("Options") == "Options"
+    assert top.get_title_text("Options") == context.i18n.t("head.title.options")
 
     bottom.go_to_home()
-    assert top.get_title_text("Barik NFC") == "Barik NFC"
+    assert top.get_title_text("Barik NFC") == context.i18n["Barik NFC"]
 
     bottom.go_to_temporary()
-    assert top.get_title_text("Barik NFC") == "Barik NFC"
+    assert top.get_title_text("Barik NFC") == context.i18n["Barik NFC"]
 
     bottom.go_to_transactions()
-    assert top.get_title_text("Transactions") == "Transactions"
+    assert top.get_title_text("Transactions") == context.i18n["Transactions"]
 
 @given('el usuario abre la aplicacion')
 def step_open_aplication(context):

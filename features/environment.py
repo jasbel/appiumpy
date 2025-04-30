@@ -3,9 +3,13 @@ import shutil
 from behave.model_core import Status
 from drivers.driver_factory import create_driver
 from time import sleep
+from support.i18n_manager import I18nManager
 
 
 def before_all(context):
+
+    context.i18n = I18nManager(base_path="i18n", default_lang="en")
+
     """Create the allure results folder before all tests run."""
     allure_results_dir = "reports/allure-results"
     if os.path.exists(allure_results_dir):
